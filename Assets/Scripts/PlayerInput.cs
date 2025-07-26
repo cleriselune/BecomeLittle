@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,10 +6,21 @@ public class PlayerInput : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 moveInput;
-    public float moveSpeed = 5;
+    public float moveSpeed = 5f;
+    public float jumpForce = 5f;
+    public bool isGrounded = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+    void Update()
+    {
+        if (Keyboard.current.wKey.wasPressedThisFrame && isGrounded)
+        {
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            isGrounded = false;
+        }
     }
 
     void FixedUpdate()
@@ -20,4 +32,21 @@ public class PlayerInput : MonoBehaviour
     {
         moveInput = inputValue.Get<Vector2>();
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = false;
+        }
+    }
+
 }
