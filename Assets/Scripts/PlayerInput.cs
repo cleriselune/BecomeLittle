@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +5,8 @@ public class PlayerInput : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 moveInput;
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float moveSpeed = 10f;
+    public float jumpForce = 20f;
     public bool isGrounded = false;
 
     void Start()
