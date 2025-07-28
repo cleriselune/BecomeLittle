@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMove : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class CameraMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && GameObject.FindObjectsByType<Point>(FindObjectsSortMode.None).Length == 0)
         {
-            mainCamera.transform.position = new Vector3(collision.transform.position.x + 15, mainCamera.transform.position.y, mainCamera.transform.position.z);
+            SceneManager.LoadScene("Hall");
         }
     }
 }
