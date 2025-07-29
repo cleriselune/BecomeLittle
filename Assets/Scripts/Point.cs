@@ -18,7 +18,10 @@ public class Point : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             totalPoints++;
-            Destroy(gameObject);
+            if (gameObject != null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
